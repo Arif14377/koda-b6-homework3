@@ -8,8 +8,6 @@ student = {
     name: ["Mika", "Mikayla", "Mikael", "Mamika", "Arif", "salika", "romeo"]
 }
 
-let filtered = []
-
 searchStudent("EO")
 
 function searchStudent(searchKeyword, callback) {
