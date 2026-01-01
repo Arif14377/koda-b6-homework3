@@ -8,7 +8,7 @@ student = {
     name: ["Mika", "Mikayla", "Mikael", "Mamika", "Arif", "salika", "romeo"]
 }
 
-searchStudent("EO")
+searchStudent("lik", countResult)
 
 function searchStudent(searchKeyword, callback) {
     result = []
@@ -48,6 +48,7 @@ function searchStudent(searchKeyword, callback) {
     });
 
     console.log(result)
+    callback(result)
 
 
 }
