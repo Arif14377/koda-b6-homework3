@@ -1,92 +1,104 @@
+// Program pencarian nama siswa
+// Database: student.name[]
+// output 1: array hasil pencarian nama siswa dalam bentuk array
+// output 2: Hitung jumlah hasil pencarian
+
+
 student = {
     name: ["Mika", "Mikayla", "Mikael", "Mamika", "Arif", "salika", "romeo"]
 }
 
 let filtered = []
 
-searchStudent("ri")
+searchStudent("EO")
 
 function searchStudent(searchKeyword, callback) {
+    result = []
+    namaSiswa = student.name
 
-    let keyword = searchKeyword
+    // 1. konversi searchKeyword ke lowercase
+    searchKeyword = toLowerHuruf(searchKeyword)
 
-    // loop search keyword
-    for(i=0; i < searchKeyword.length; i++) {
-        // console.log(searchKeyword[i])
 
-        // looping name student
-        for(x=0; x < student.name.length; x++) {
-        // console.log(student.name[x])
-            // looping string nama siswa ke [x]
-            for(y=0; y < student.name[x].length; y++) {
-                // console.log(student.name[x][y])
-                if (searchKeyword[i] === student.name[x][y] && searchKeyword[i+1] === student.name[x][y+1]){
-                    filtered[x] = student.name[x]
+    // 2. loop search keyword di dalam student name
+    namaSiswa.forEach((siswa, idx) => {
+        const lowerSiswa = toLowerHuruf(siswa)
+        // console.log(lowerSiswa)
+        isCocok = false
+
+        for (let i = 0; i < lowerSiswa.length; i++) {
+            jumlahKesamaan = 0;
+
+            for (let j = 0; j < searchKeyword.length; j++) {
+                if (lowerSiswa[i+j] === searchKeyword[j]) {
+                    jumlahKesamaan++
+                } else {
+                    break
                 }
-                
+            }
+
+            if (jumlahKesamaan === searchKeyword.length) {
+                isCocok = true
+                break;
             }
         }
+
+        if (isCocok) {
+            result[result.length] = namaSiswa[idx]
+        }
         
+    });
+
+    console.log(result)
+
+
+}
+
+// menghitung hasil pencarian
+function countResult(searchResult) {
+    console.log(`Jumlah hasil pencarian: ${searchResult.length}`)
+}
+
+// konversi string ke lowercase
+function toLowerHuruf(input) {
+    let result = ""
+
+    const char = {
+        A: "a",
+        B: "b",
+        C: "c",
+        D: "d",
+        E: "e",
+        F: "f",
+        G: "g",
+        H: "h",
+        I: "i",
+        J: "j",
+        K: "k",
+        L: "l",
+        M: "m",
+        N: "n",
+        O: "o",
+        P: "p",
+        Q: "q",
+        R: "r",
+        S: "s",
+        T: "t",
+        U: "u",
+        V: "v",
+        W: "w",
+        X: "x",
+        Y: "y",
+        Z: "z",
     }
 
-    // for(i=0; i<filtered.length; i++) {
-    //     for(x=0; x<filtered.length; i++){
-    //         if (filtered[i] === filtered[x]) {
+    for (i=0; i<input.length; i++) {
+        if(char[input[i]]) {
+            result += char[input[i]]
+        } else {
+            result += input[i]
+        }
+    }
 
-    //         }
-    //     }
-    // }
-    
-    console.log(filtered)
-
-
+    return result
 }
-
-function countResult() {
-
-}
-
-
-// // coret-coret
-// dataSiswa = {
-//     nama: ["arif", "rahman", "ori", "obe", "mikayla", "kayla", "layla"]
-// }
-
-
-// search = "ayla"
-
-// let tampung = []
-
-
-// let hasilPencarian = []
-
-// // loop data siswa
-// for (i=0; i < dataSiswa.nama.length; i++) {
-//     tampung[i] = ""
-//     // loop siswa ke i
-//     for (x=0; x < dataSiswa.nama[i].length; x++) {
-//         for (y=0; y < search.length; y++) {
-//             if (dataSiswa.nama[i][x + y] === search[y]) {
-//                 tampung[i] += dataSiswa.nama[i][x]
-//             } else {
-//             tampung[i] += ""
-//             }
-//         }
-        
-//     }
-// }
-
-
-// // for(y=0; y < search.length; y++) {
-// //     if (tampung[i] === search(y))
-// // }
-
-// // for(z=0; z < tampung.length; z++) {
-// //     if(tampung[z] === search) {
-// //         hasilPencarian[z] = dataSiswa.nama[z]
-// //     }
-// // }
-
-
-// console.log(tampung)
-// // console.log(hasilPencarian)
